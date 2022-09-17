@@ -30,7 +30,7 @@ class WeatherScreen extends StatelessWidget {
     );
   }
 
-   Widget _buildColumn(BuildContext context) {
+  Widget _buildColumn(BuildContext context) {
     final weatherBloc = context.read<WeatherBloc>();
     final controller = TextEditingController();
 
