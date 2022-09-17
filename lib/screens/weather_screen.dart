@@ -51,7 +51,7 @@ class WeatherScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: _isDisabled(state) ? null : () => weatherBloc.add(LoadWeather(location: controller.text)),
                   child: const Text("Seach"),
-                ),
+              ),
             )
           ],
         );
