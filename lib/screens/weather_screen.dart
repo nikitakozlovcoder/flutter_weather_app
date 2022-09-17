@@ -52,7 +52,6 @@ class WeatherScreen extends StatelessWidget {
                   onPressed: _isDisabled(state) ? null : () => weatherBloc.add(LoadWeather(location: controller.text)),
                   child: const Text("Seach"),
                 ),
-                 
             )
           ],
         );

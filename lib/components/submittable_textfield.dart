@@ -11,7 +11,6 @@ class SubmittableTextField extends StatelessWidget {
     required this.onSubmitted,
     this.controller
   }) : super(key: key);
-  
 
   @override
   Widget build(BuildContext context) {
