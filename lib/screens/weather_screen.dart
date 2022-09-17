@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myflutterapp/constants/ui.dart';
 
 import '../bloc/weather/weather_bloc.dart';
-import '../components/submittable_textfiled.dart';
+import '../components/submittable_textfield.dart';
 import '../components/weather_show.dart';
 
 class WeatherScreen extends StatelessWidget {
@@ -33,7 +33,7 @@ class WeatherScreen extends StatelessWidget {
    Widget _buildColumn(BuildContext context) {
     final weatherBloc = context.read<WeatherBloc>();
     final controller = TextEditingController();
-    
+
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
         return Column(
