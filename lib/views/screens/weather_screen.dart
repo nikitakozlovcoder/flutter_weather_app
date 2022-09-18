@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myflutterapp/configuration/di.dart';
 import 'package:myflutterapp/constants/ui.dart';
 
-import '../bloc/weather/weather_bloc.dart';
+import '../../bloc/weather/weather_bloc.dart';
 import '../components/submittable_textfield.dart';
 import '../components/weather_show.dart';
 
 class WeatherScreen extends StatelessWidget {
   static const label = "City";
+  final String title;
 
   const WeatherScreen({
-    Key? key,
+    Key? key, 
+    required this.title,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: BlocProvider(
-          create: (context) => WeatherBloc(),
-          child: Builder(builder: (context) {
-            return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _buildColumn(context)
-              );
-          }),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: BlocProvider(
+            create: (context) => getIt<WeatherBloc>(),
+            child: Builder(builder: (context) {
+              return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _buildColumn(context)
+                );
+            }),
+          ),
         ),
       ),
     );
@@ -44,12 +52,12 @@ class WeatherScreen extends StatelessWidget {
             SubmittableTextField(
               label: label,
               controller: controller,
-              onSubmitted: _isDisabled(state) ? null : (val) => weatherBloc.add(LoadWeather(location: val)),
+              onSubmitted: _isDisabled(state) ? null : (val) => _onSearchWeather(val, weatherBloc)
             ),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: _isDisabled(state) ? null : () => weatherBloc.add(LoadWeather(location: controller.text)),
+                  onPressed: _isDisabled(state) ? null : () => _onSearchWeather(controller.text, weatherBloc),
                   child: const Text("Seach"),
               ),
             )
@@ -61,5 +69,9 @@ class WeatherScreen extends StatelessWidget {
 
   bool _isDisabled(WeatherState state) {
     return state is WeatherLoading;
+  }
+
+  void _onSearchWeather(String location, WeatherBloc weatherBloc){
+    weatherBloc.add(LoadWeather(location: location));
   }
 }

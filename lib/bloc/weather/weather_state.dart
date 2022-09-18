@@ -7,6 +7,8 @@ class WeatherInitial extends WeatherState {}
 
 class WeatherLoading extends WeatherState {}
 
+class WeatherException extends WeatherState {}
+
 class WeatherLoaded extends WeatherState {
   final double temperature;
   WeatherLoaded({required this.temperature});
