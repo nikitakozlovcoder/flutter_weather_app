@@ -1,9 +1,13 @@
 import 'package:envied/envied.dart';
+import 'package:injectable/injectable.dart';
 
 part 'env.g.dart';
 
 @Envied(path: '.env')
-abstract class Env {
+@Injectable()
+class Env {
     @EnviedField(varName: 'openweathermapkey')
-    static const openweathermapkey = _Env.openweathermapkey;
+    final openweathermapkey = _Env.openweathermapkey;
 }
+
+

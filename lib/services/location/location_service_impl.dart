@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:myflutterapp/models/location/location_dto.dart';
 import 'package:myflutterapp/models/location/location_responce.dart';
@@ -10,10 +11,13 @@ import '../../configuration/env.dart';
 class LocationServiceImpl implements LocationService{
   static const apiBase = "https://api.openweathermap.org/";
   static const locationEndpoint = "geo/1.0/direct";
+  final Env env;
 
+  LocationServiceImpl(this.env);
+  
   @override
   Future<LocationDto> getLocationByCityName(String cityname) async {
-    final url = "$apiBase$locationEndpoint?q=$cityname&appid=${Env.openweathermapkey}";
+    final url = "$apiBase$locationEndpoint?q=$cityname&appid=${env.openweathermapkey}";
     final responce = await http.get(Uri.parse(url));
     final List<dynamic> list = jsonDecode(responce.body);
     final locationResponce = LocationResponce.fromJson(list.first);

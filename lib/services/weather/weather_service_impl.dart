@@ -10,10 +10,13 @@ import 'dart:convert';
 class WeatherServiceImp implements WeatherService {
   static const apiBase = "https://api.openweathermap.org/";
   static const weatherEndpoint = "data/2.5/weather";
+  final Env env;
+
+  WeatherServiceImp(this.env);
 
   @override
   Future<WeatherDto> getWeather(double latitude, double longtitute) async {
-    final url = "$apiBase$weatherEndpoint?lat=$latitude&lon=$longtitute&appid=${Env.openweathermapkey}";
+    final url = "$apiBase$weatherEndpoint?lat=$latitude&lon=$longtitute&appid=${env.openweathermapkey}";
     final responce = await http.get(Uri.parse(url));
     final map = jsonDecode(responce.body);
     final data = OpenWeatherResponce.fromJson(map);
