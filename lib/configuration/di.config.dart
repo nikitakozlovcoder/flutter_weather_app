@@ -31,7 +31,8 @@ _i1.GetIt $initGetIt(
     environmentFilter,
   );
   gh.factory<_i3.Env>(() => _i3.Env());
-  gh.factory<_i4.LocationService>(() => _i5.LocationServiceImpl());
+  gh.factory<_i4.LocationService>(
+      () => _i5.LocationServiceImpl(get<_i3.Env>()));
   gh.factory<_i6.TemperatureConverterService>(
       () => _i7.TemperatureConverterServiceImpl());
   gh.factory<_i8.WeatherService>(() => _i9.WeatherServiceImp(get<_i3.Env>()));
