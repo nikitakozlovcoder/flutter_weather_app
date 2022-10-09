@@ -1,7 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:myflutterapp/models/openweather/openweather_responce.dart';
-import 'package:myflutterapp/models/weather/weather_dto.dart';
+import 'package:myflutterapp/models/openweather/openweather_weather_dto.dart';
 import 'package:http/http.dart' as http;
+import 'package:myflutterapp/models/openweather/openweather_weather_info_dto.dart';
+import 'package:myflutterapp/models/weather/weather_dto.dart';
 import '../../configuration/env.dart';
 import 'contracts/weather_service.dart';
 import 'dart:convert';
@@ -20,9 +22,13 @@ class WeatherServiceImp implements WeatherService {
     final responce = await http.get(Uri.parse(url));
     final map = jsonDecode(responce.body);
     final data = OpenWeatherResponce.fromJson(map);
-    final weatherDto = WeatherDto.fromJson(data.main);
-
-    return weatherDto;
+    final openWeatherWeatherDto = OpenWeatherWeatherDto.fromJson(data.main);
+    final openWeatherWeatherWeatherInfoDto = OpenWeatherWeatherInfoDto.fromJson(data.weather.first);
+    return WeatherDto(
+      main: openWeatherWeatherWeatherInfoDto.main,
+      description: openWeatherWeatherWeatherInfoDto.description,
+      temp: openWeatherWeatherDto.temp
+    );
   }
 
 }

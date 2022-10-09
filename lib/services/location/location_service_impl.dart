@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:myflutterapp/models/location/location_dto.dart';
 import 'package:myflutterapp/models/location/location_responce.dart';

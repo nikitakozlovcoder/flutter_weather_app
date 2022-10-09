@@ -1,13 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'weather_dto.g.dart';
-
-@JsonSerializable()
 class WeatherDto {
-  //In kelvins
+  final String description;
+  final String main;
   final double temp;
 
-  WeatherDto({required this.temp});
-
-  factory WeatherDto.fromJson(Map<String, dynamic> json) => _$WeatherDtoFromJson(json);
-  Map<String, dynamic> toJson() => _$WeatherDtoToJson(this);
+  WeatherDto({required this.main, required this.description, required this.temp});
 }

@@ -1,16 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'weather_dto.dart';
+part of 'openweather_weather_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherDto _$WeatherDtoFromJson(Map<String, dynamic> json) => WeatherDto(
+OpenWeatherWeatherDto _$OpenWeatherWeatherDtoFromJson(
+        Map<String, dynamic> json) =>
+    OpenWeatherWeatherDto(
       temp: (json['temp'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$WeatherDtoToJson(WeatherDto instance) =>
+Map<String, dynamic> _$OpenWeatherWeatherDtoToJson(
+        OpenWeatherWeatherDto instance) =>
     <String, dynamic>{
       'temp': instance.temp,
     };

@@ -5,11 +5,11 @@ abstract class WeatherState {}
 
 class WeatherInitial extends WeatherState {}
 
-class WeatherLoading extends WeatherState {}
+class WeatherLoading implements WeatherState {}
 
-class WeatherException extends WeatherState {}
+class WeatherException implements WeatherState {}
 
-class WeatherLoaded extends WeatherState {
-  final double temperature;
-  WeatherLoaded({required this.temperature});
+class WeatherLoaded implements WeatherState {
+  final WeatherDto weather;
+  WeatherLoaded({required this.weather});
 }
