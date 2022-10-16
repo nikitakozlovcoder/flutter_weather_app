@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myflutterapp/bloc/weather/weather_bloc.dart';
-import 'package:myflutterapp/extensions/strings/string.dart';
+import 'package:myflutterapp/extensions/strings/capitalize.dart';
 
 class WeatherShow extends StatelessWidget {
   const WeatherShow({
@@ -22,12 +22,10 @@ class WeatherShow extends StatelessWidget {
             ],
           );
         }
-
-        if(state is WeatherLoading){
+        else if(state is WeatherLoading){
           return const CircularProgressIndicator();
         }
-
-        if(state is WeatherException){
+        else if(state is WeatherException){
           return Text(
             "An error occured, please try again later",
             style: Theme.of(context).textTheme.headline5?.apply(color: Colors.red),

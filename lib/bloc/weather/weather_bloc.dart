@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:myflutterapp/models/weather/weather_dto.dart';
 import 'package:myflutterapp/services/location/contracts/location_service.dart';
-import 'package:myflutterapp/services/weather/contracts/temperature_converter_service.dart';
 import 'package:myflutterapp/services/weather/contracts/weather_service.dart';
 
 part 'weather_event.dart';
@@ -14,9 +13,8 @@ part 'weather_state.dart';
 @Injectable()
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherService weatherService;
-  final TemperatureConverterService temperatureConverterService;
   final LocationService locationService;
-  WeatherBloc(this.weatherService, this.temperatureConverterService, this.locationService) : super(WeatherInitial()) {
+  WeatherBloc(this.weatherService, this.locationService) : super(WeatherInitial()) {
     on<LoadWeather>(_onLoadWeather);
   }
 
