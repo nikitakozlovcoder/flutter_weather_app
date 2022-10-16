@@ -23,13 +23,13 @@ class HttpServiceImpl implements HttpService {
     return _buildListResult<T>(responce, jsonConverter);
   }
 
-  T _buildResult<T>(Response responce, JsonConverter<T> jsonConverter){
+  T _buildResult<T>(Response responce, JsonConverter<T> jsonConverter) {
     final json = jsonDecode(responce.body);
 
     return jsonConverter.call(json);
   }
 
-  List<T> _buildListResult<T>(Response responce, JsonConverter<T> jsonConverter){
+  List<T> _buildListResult<T>(Response responce, JsonConverter<T> jsonConverter) {
     final json = jsonDecode(responce.body);
     final list = List<T>.generate(json.length,
       (index) => jsonConverter.call(json[index]));
