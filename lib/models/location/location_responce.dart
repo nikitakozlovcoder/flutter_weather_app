@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'location_responce.g.dart';
 
 @JsonSerializable()
-class LocationResponce{
+class LocationResponce {
   final String name;
   final String country;
   final double lat;

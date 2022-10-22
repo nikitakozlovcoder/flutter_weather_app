@@ -3,13 +3,13 @@ part of 'weather_bloc.dart';
 @immutable
 abstract class WeatherState {}
 
-class WeatherInitial extends WeatherState {}
+class WeatherInitialState extends WeatherState {}
 
-class WeatherLoading implements WeatherState {}
+class WeatherLoadingState implements WeatherState {}
 
-class WeatherException implements WeatherState {}
+class WeatherExceptionState implements WeatherState {}
 
-class WeatherLoaded implements WeatherState {
+class WeatherLoadedState implements WeatherState {
   final WeatherDto weather;
-  WeatherLoaded({required this.weather});
+  WeatherLoadedState({required this.weather});
 }

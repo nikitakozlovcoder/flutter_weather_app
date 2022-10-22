@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 part 'env.g.dart';
 
 @Envied(path: '.env')
-@Injectable()
+@Singleton()
 class Env {
     @EnviedField(varName: 'openweathermapkey')
     final openweathermapkey = _Env.openweathermapkey;

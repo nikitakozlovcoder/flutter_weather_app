@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:myflutterapp/models/location/location_dto.dart';
 import 'package:myflutterapp/models/location/location_responce.dart';
+import 'package:myflutterapp/services/http/auth_http_service_impl.dart';
 import 'package:myflutterapp/services/http/contracts/http_service.dart';
 import 'package:myflutterapp/services/location/contracts/location_service.dart';
 import '../../configuration/env.dart';
@@ -12,7 +13,7 @@ class LocationServiceImpl implements LocationService{
   final HttpService httpService;
   final Env env;
 
-  LocationServiceImpl(this.env, this.httpService);
+  LocationServiceImpl(this.env, @Named.from(AuthHttpServiceImpl) this.httpService);
   
   @override
   Future<LocationDto> getLocationByCityName(String cityname) async {

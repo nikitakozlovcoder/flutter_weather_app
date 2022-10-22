@@ -12,7 +12,7 @@ class WeatherShow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
-        if(state is WeatherLoaded){
+        if(state is WeatherLoadedState){
           return Column(
             children: [
               Text(state.weather.description.capitilize(), style: Theme.of(context).textTheme.headline5),
@@ -22,13 +22,13 @@ class WeatherShow extends StatelessWidget {
             ],
           );
         }
-        else if(state is WeatherLoading){
+        else if(state is WeatherLoadingState){
           return const CircularProgressIndicator();
         }
-        else if(state is WeatherException){
+        else if(state is WeatherExceptionState){
           return Text(
             "An error occured, please try again later",
-            style: Theme.of(context).textTheme.headline5?.apply(color: Colors.red),
+            style: Theme.of(context).textTheme.headline5?.apply(color: Colors.red)
           );
         }
 

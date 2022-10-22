@@ -10,25 +10,25 @@ import 'package:myflutterapp/services/weather/contracts/weather_service.dart';
 part 'weather_event.dart';
 part 'weather_state.dart';
 
-@Injectable()
+@injectable
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherService weatherService;
   final LocationService locationService;
-  WeatherBloc(this.weatherService, this.locationService) : super(WeatherInitial()) {
-    on<LoadWeather>(_onLoadWeather);
+  WeatherBloc(this.weatherService, this.locationService) : super(WeatherInitialState()) {
+    on<LoadWeatherEvent>(_onLoadWeather);
   }
 
-  Future<void> _onLoadWeather(LoadWeather event, Emitter<WeatherState> emit) async {
-    emit(WeatherLoading());
+  Future<void> _onLoadWeather(LoadWeatherEvent event, Emitter<WeatherState> emit) async {
+    emit(WeatherLoadingState());
 
     try{
       var locationDto = await locationService.getLocationByCityName(event.location);
       var weatherDto = await weatherService.getWeather(locationDto.latitude, locationDto.longtitute);
-      var weatherState = WeatherLoaded(weather: weatherDto);
+      var weatherState = WeatherLoadedState(weather: weatherDto);
       emit(weatherState);
     }
     catch(e) {
-      emit(WeatherException());
+      emit(WeatherExceptionState());
       log(e.toString());
     }
   }

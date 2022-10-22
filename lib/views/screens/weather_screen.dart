@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myflutterapp/configuration/di.dart';
 import 'package:myflutterapp/constants/ui.dart';
+import 'package:myflutterapp/extensions/navigation/open.dart';
+import 'package:myflutterapp/views/screens/battery_info_screen.dart';
 
 import '../../bloc/weather/weather_bloc.dart';
 import '../components/submittable_textfield.dart';
@@ -60,6 +62,13 @@ class WeatherScreen extends StatelessWidget {
                   onPressed: _isDisabled(state) ? null : () => _onSearchWeather(controller.text, weatherBloc),
                   child: const Text("Seach"),
               ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => context.open(const BatteryInfoScreen()), 
+                child: const Text('Battery Info')
+              ),
             )
           ],
         );
@@ -68,10 +77,10 @@ class WeatherScreen extends StatelessWidget {
   }
 
   bool _isDisabled(WeatherState state) {
-    return state is WeatherLoading;
+    return state is WeatherLoadingState;
   }
 
   void _onSearchWeather(String location, WeatherBloc weatherBloc){
-    weatherBloc.add(LoadWeather(location: location));
+    weatherBloc.add(LoadWeatherEvent(location: location));
   }
 }

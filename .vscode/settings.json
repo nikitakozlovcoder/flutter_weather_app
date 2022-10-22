@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-      "**/*.config.dart": true,
+      "**/*.config.dart": false,
       "**/*.freezed.dart": true,
       "**/*.g.dart": true,
       ".idea": true,
