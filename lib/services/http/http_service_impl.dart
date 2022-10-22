@@ -22,6 +22,54 @@ class HttpServiceImpl implements HttpService {
    
     return _buildListResult<T>(responce, jsonConverter);
   }
+  
+  @override
+  Future<T> delete<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
+    final uri = Uri.parse(url);
+    final responce = await http.delete(uri, body: body);
+   
+    return _buildResult<T>(responce, jsonConverter);
+  }
+  
+  @override
+  Future<List<T>> deleteList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
+    final uri = Uri.parse(url);
+    final responce = await http.delete(uri, body: body);
+   
+    return _buildListResult<T>(responce, jsonConverter);
+  }
+  
+  @override
+  Future<T> post<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
+    final uri = Uri.parse(url);
+    final responce = await http.post(uri, body: body);
+   
+    return _buildResult<T>(responce, jsonConverter);
+  }
+  
+  @override
+  Future<List<T>> postList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
+    final uri = Uri.parse(url);
+    final responce = await http.post(uri, body: body);
+   
+    return _buildListResult<T>(responce, jsonConverter);
+  }
+  
+  @override
+  Future<T> put<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
+    final uri = Uri.parse(url);
+    final responce = await http.put(uri, body: body);
+   
+    return _buildResult<T>(responce, jsonConverter);
+  }
+  
+  @override
+  Future<List<T>> putList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
+    final uri = Uri.parse(url);
+    final responce = await http.put(uri, body: body);
+   
+    return _buildListResult<T>(responce, jsonConverter);
+  }
 
   T _buildResult<T>(Response responce, JsonConverter<T> jsonConverter) {
     final json = jsonDecode(responce.body);

@@ -31,5 +31,4 @@ class WeatherServiceImp implements WeatherService {
       temp: temperatureConverterService.fromKelvinsToCelsius(openWeatherWeatherDto.temp)
     );
   }
-
 }

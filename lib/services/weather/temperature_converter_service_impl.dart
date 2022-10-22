@@ -8,6 +8,5 @@ class TemperatureConverterServiceImpl implements TemperatureConverterService {
   @override
   double fromKelvinsToCelsius(double temperature) {
     return temperature - absoluteZeroByKelvins;
-  
   }
 }

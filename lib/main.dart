@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myflutterapp/views/screens/weather_screen.dart';
-import 'package:myflutterapp/extensions/navigation/open.dart';
-
 import 'configuration/di.dart';
 
 void main() {
@@ -21,24 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: Builder(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Weather App'),
-            ),
-            body: Container(
-              color: Colors.white,
-              child: Center(
-                child: ElevatedButton(
-                  child: const Text("Go"),
-                  onPressed: () => context.open(const WeatherScreen(title: 'Weather App')),
-                ),
-              ),
-            )
-          );
-        }
-      )
+      home: const WeatherScreen(title:'Weather App')
     );
   }
 }
