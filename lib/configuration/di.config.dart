@@ -12,9 +12,9 @@ import '../bloc/battery/battery_bloc.dart' as _i15;
 import '../bloc/weather/weather_bloc.dart' as _i16;
 import '../services/battery/battery_service_impl.dart' as _i4;
 import '../services/battery/contracts/battery_service.dart' as _i3;
-import '../services/http/auth_http_service_impl.dart' as _i8;
 import '../services/http/contracts/http_service.dart' as _i6;
 import '../services/http/http_service_impl.dart' as _i7;
+import '../services/http/openweather_http_service_impl.dart' as _i8;
 import '../services/location/contracts/location_service.dart' as _i9;
 import '../services/location/location_service_impl.dart' as _i10;
 import '../services/weather/contracts/temperature_converter_service.dart'
@@ -40,19 +40,18 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i5.Env>(_i5.Env());
   gh.factory<_i6.HttpService>(() => _i7.HttpServiceImpl());
   gh.factory<_i6.HttpService>(
-    () => _i8.AuthHttpServiceImpl(),
-    instanceName: 'AuthHttpServiceImpl',
+    () => _i8.OpenWeatherHttpServiceImpl(get<_i5.Env>()),
+    instanceName: 'OpenWeatherHttpServiceImpl',
   );
   gh.factory<_i9.LocationService>(() => _i10.LocationServiceImpl(
         get<_i5.Env>(),
-        get<_i6.HttpService>(instanceName: 'AuthHttpServiceImpl'),
+        get<_i6.HttpService>(instanceName: 'OpenWeatherHttpServiceImpl'),
       ));
   gh.factory<_i11.TemperatureConverterService>(
       () => _i12.TemperatureConverterServiceImpl());
   gh.factory<_i13.WeatherService>(() => _i14.WeatherServiceImp(
-        get<_i5.Env>(),
         get<_i11.TemperatureConverterService>(),
-        get<_i6.HttpService>(),
+        get<_i6.HttpService>(instanceName: 'OpenWeatherHttpServiceImpl'),
       ));
   gh.factory<_i15.BatteryBloc>(
       () => _i15.BatteryBloc(get<_i3.BatteryService>()));
