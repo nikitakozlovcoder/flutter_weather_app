@@ -23,11 +23,11 @@ class WeatherServiceImp implements WeatherService {
     final url = "$apiBase$weatherEndpoint?lat=$latitude&lon=$longtitute&appid=${env.openweathermapkey}";
     final responce = await httpService.get<OpenWeatherResponce>(url, OpenWeatherResponce.fromJson);
     final openWeatherWeatherDto = OpenWeatherWeatherDto.fromJson(responce.main);
-    final openWeatherWeatherWeatherInfoDto = OpenWeatherWeatherInfoDto.fromJson(responce.weather.first);
+    final openWeatherWeatherInfoDto = OpenWeatherWeatherInfoDto.fromJson(responce.weather.first);
 
     return WeatherDto(
-      main: openWeatherWeatherWeatherInfoDto.main,
-      description: openWeatherWeatherWeatherInfoDto.description,
+      main: openWeatherWeatherInfoDto.main,
+      description: openWeatherWeatherInfoDto.description,
       temp: temperatureConverterService.fromKelvinsToCelsius(openWeatherWeatherDto.temp)
     );
   }
