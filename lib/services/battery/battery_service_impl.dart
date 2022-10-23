@@ -6,11 +6,11 @@ import 'contracts/battery_service.dart';
 
 @Injectable(as: BatteryService)
 class BatteryServiceImpl implements BatteryService {
-  static const platform = MethodChannel(ChannelsConstants.batteryChannel);
+  static const _platform = MethodChannel(ChannelsConstants.batteryChannel);
 
   @override
   Future<BatteryDto> getBatteryInfo() async {
-    final res = await platform.invokeMethod<int>(ChannelsConstants.batteryChannelGet);
+    final res = await _platform.invokeMethod<int>(ChannelsConstants.batteryChannelGet);
     return BatteryDto(energyLevel: res!);
   }
 }

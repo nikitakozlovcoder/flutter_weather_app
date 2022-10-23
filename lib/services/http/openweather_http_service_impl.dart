@@ -9,15 +9,15 @@ import 'http.enum.dart';
 @named 
 @Injectable(as: HttpService)
 class OpenWeatherHttpServiceImpl extends HttpServiceImpl {
-  final Env env;
+  final Env _env;
 
-  OpenWeatherHttpServiceImpl(this.env);
+  OpenWeatherHttpServiceImpl(this._env);
 
   @override
   FutureOr<AppHttpRequest> beforeHook(String url, HttpVerb verb,  Object? body) async {
     final req = await super.beforeHook(url, verb, body);
     final uri = req.uri.replace(queryParameters: {...req.uri.queryParameters}
-      ..putIfAbsent('appid', () => env.openweathermapkey));
+      ..putIfAbsent('appid', () => _env.openweathermapkey));
       
     return AppHttpRequest(
       uri: uri,

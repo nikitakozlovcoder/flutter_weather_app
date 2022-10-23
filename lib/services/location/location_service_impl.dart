@@ -8,17 +8,16 @@ import '../../configuration/env.dart';
 
 @Injectable(as: LocationService)
 class LocationServiceImpl implements LocationService{
-  static const apiBase = "https://api.openweathermap.org/";
-  static const locationEndpoint = "geo/1.0/direct";
-  final HttpService httpService;
-  final Env env;
+  static const _apiBase = "https://api.openweathermap.org/";
+  static const _locationEndpoint = "geo/1.0/direct";
+  final HttpService _httpService;
 
-  LocationServiceImpl(this.env, @Named.from(OpenWeatherHttpServiceImpl) this.httpService);
+  LocationServiceImpl(@Named.from(OpenWeatherHttpServiceImpl) this._httpService);
   
   @override
   Future<LocationDto> getLocationByCityName(String cityname) async {
-    final url = "$apiBase$locationEndpoint?q=$cityname";
-    final responce = await httpService.getList<LocationResponce>(url, LocationResponce.fromJson);
+    final url = "$_apiBase$_locationEndpoint?q=$cityname";
+    final responce = await _httpService.getList<LocationResponce>(url, LocationResponce.fromJson);
     final locationResponce = responce.first;
 
     return LocationDto(

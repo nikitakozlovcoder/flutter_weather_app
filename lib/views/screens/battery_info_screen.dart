@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myflutterapp/bloc/battery/battery_bloc.dart';
 import 'package:myflutterapp/configuration/di.dart';
-import '../../bloc/battery/battery_bloc.dart';
 
 
 class BatteryInfoScreen extends StatelessWidget {
