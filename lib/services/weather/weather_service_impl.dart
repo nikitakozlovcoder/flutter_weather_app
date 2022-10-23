@@ -10,24 +10,24 @@ import 'contracts/weather_service.dart';
 
 @Injectable(as: WeatherService)
 class WeatherServiceImp implements WeatherService {
-  static const apiBase = "https://api.openweathermap.org/";
-  static const weatherEndpoint = "data/2.5/weather";
-  final TemperatureConverterService temperatureConverterService;
-  final HttpService httpService;
+  static const _apiBase = "https://api.openweathermap.org/";
+  static const _weatherEndpoint = "data/2.5/weather";
+  final TemperatureConverterService _temperatureConverterService;
+  final HttpService _httpService;
 
-  WeatherServiceImp(this.temperatureConverterService, @Named.from(OpenWeatherHttpServiceImpl) this.httpService);
+  WeatherServiceImp(this._temperatureConverterService, @Named.from(OpenWeatherHttpServiceImpl) this._httpService);
 
   @override
   Future<WeatherDto> getWeather(double latitude, double longtitute) async {
-    final url = "$apiBase$weatherEndpoint?lat=$latitude&lon=$longtitute";
-    final responce = await httpService.get<OpenWeatherResponce>(url, OpenWeatherResponce.fromJson);
+    final url = "$_apiBase$_weatherEndpoint?lat=$latitude&lon=$longtitute";
+    final responce = await _httpService.get<OpenWeatherResponce>(url, OpenWeatherResponce.fromJson);
     final openWeatherWeatherDto = OpenWeatherWeatherDto.fromJson(responce.main);
     final openWeatherWeatherInfoDto = OpenWeatherWeatherInfoDto.fromJson(responce.weather.first);
 
     return WeatherDto(
       main: openWeatherWeatherInfoDto.main,
       description: openWeatherWeatherInfoDto.description,
-      temp: temperatureConverterService.fromKelvinsToCelsius(openWeatherWeatherDto.temp)
+      temp: _temperatureConverterService.fromKelvinsToCelsius(openWeatherWeatherDto.temp)
     );
   }
 }

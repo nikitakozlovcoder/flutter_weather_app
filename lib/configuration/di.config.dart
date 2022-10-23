@@ -44,9 +44,7 @@ _i1.GetIt $initGetIt(
     instanceName: 'OpenWeatherHttpServiceImpl',
   );
   gh.factory<_i9.LocationService>(() => _i10.LocationServiceImpl(
-        get<_i5.Env>(),
-        get<_i6.HttpService>(instanceName: 'OpenWeatherHttpServiceImpl'),
-      ));
+      get<_i6.HttpService>(instanceName: 'OpenWeatherHttpServiceImpl')));
   gh.factory<_i11.TemperatureConverterService>(
       () => _i12.TemperatureConverterServiceImpl());
   gh.factory<_i13.WeatherService>(() => _i14.WeatherServiceImp(

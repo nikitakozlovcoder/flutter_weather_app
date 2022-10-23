@@ -4,7 +4,6 @@ import 'package:myflutterapp/models/location/location_responce.dart';
 import 'package:myflutterapp/services/http/openweather_http_service_impl.dart';
 import 'package:myflutterapp/services/http/contracts/http_service.dart';
 import 'package:myflutterapp/services/location/contracts/location_service.dart';
-import '../../configuration/env.dart';
 
 @Injectable(as: LocationService)
 class LocationServiceImpl implements LocationService{
