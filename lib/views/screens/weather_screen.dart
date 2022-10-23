@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myflutterapp/bloc/weather/weather_bloc.dart';
 import 'package:myflutterapp/configuration/di.dart';
 import 'package:myflutterapp/constants/ui.dart';
 import 'package:myflutterapp/extensions/navigation/open.dart';
+import 'package:myflutterapp/views/components/submittable_textfield.dart';
+import 'package:myflutterapp/views/components/weather_show.dart';
 import 'package:myflutterapp/views/screens/battery_info_screen.dart';
-
-import '../../bloc/weather/weather_bloc.dart';
-import '../components/submittable_textfield.dart';
-import '../components/weather_show.dart';
 
 class WeatherScreen extends StatelessWidget {
   static const label = "City";

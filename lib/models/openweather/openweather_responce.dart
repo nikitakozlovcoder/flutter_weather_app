@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'openweather_responce.g.dart';
 
 @JsonSerializable()

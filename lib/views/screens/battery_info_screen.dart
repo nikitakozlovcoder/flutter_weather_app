@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myflutterapp/bloc/battery/battery_bloc.dart';
 import 'package:myflutterapp/configuration/di.dart';
 
-
 class BatteryInfoScreen extends StatelessWidget {
   static const label = "City";
   static const title = "Battery Info";
@@ -25,7 +24,7 @@ class BatteryInfoScreen extends StatelessWidget {
             child: Builder(builder: (context) {
               return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: _buildColumn(context)
+                  child: _buildBatteryInfo(context)
                 );
             }),
           ),
@@ -34,7 +33,7 @@ class BatteryInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildColumn(BuildContext context) {
+  Widget _buildBatteryInfo(BuildContext context) {
     return BlocBuilder<BatteryBloc, BatteryState>(
       builder: (context, state) {
         if(state is BatteryLoadedState) {

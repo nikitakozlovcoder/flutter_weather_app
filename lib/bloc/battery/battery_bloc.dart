@@ -10,16 +10,16 @@ part 'battery_state.dart';
 
 @injectable
 class BatteryBloc extends Bloc<BatteryEvent, BatteryState> {
-  final BatteryService batteryService;
+  final BatteryService _batteryService;
 
-  BatteryBloc(this.batteryService) : super(BatteryInitialState()) {
+  BatteryBloc(this._batteryService) : super(BatteryInitialState()) {
     on<BatteryLoadEvent>(_onBatteryLoad);
   }
 
   FutureOr<void> _onBatteryLoad(BatteryLoadEvent event, Emitter<BatteryState> emit) async {
 
     try {
-      final info = await batteryService.getBatteryInfo();
+      final info = await _batteryService.getBatteryInfo();
       emit(BatteryLoadedState(battery: info));
     }
     catch(e) {

@@ -12,9 +12,9 @@ part 'weather_state.dart';
 
 @injectable
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  final WeatherService weatherService;
-  final LocationService locationService;
-  WeatherBloc(this.weatherService, this.locationService) : super(WeatherInitialState()) {
+  final WeatherService _weatherService;
+  final LocationService _locationService;
+  WeatherBloc(this._weatherService, this._locationService) : super(WeatherInitialState()) {
     on<LoadWeatherEvent>(_onLoadWeather);
   }
 
@@ -22,8 +22,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     emit(WeatherLoadingState());
 
     try{
-      var locationDto = await locationService.getLocationByCityName(event.location);
-      var weatherDto = await weatherService.getWeather(locationDto.latitude, locationDto.longtitute);
+      var locationDto = await _locationService.getLocationByCityName(event.location);
+      var weatherDto = await _weatherService.getWeather(locationDto.latitude, locationDto.longtitute);
       var weatherState = WeatherLoadedState(weather: weatherDto);
       emit(weatherState);
     }

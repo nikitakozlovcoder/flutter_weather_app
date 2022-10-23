@@ -31,7 +31,7 @@ class HttpServiceImpl implements HttpService {
   @override
   Future<T> delete<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
     final req = await beforeHook(url, HttpVerb.delete, body);
-    var response = await http.delete(req.uri, body: body, headers: req.headers);
+    var response = await http.delete(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
 
     return _buildResult<T>(response, jsonConverter);
@@ -40,7 +40,7 @@ class HttpServiceImpl implements HttpService {
   @override
   Future<List<T>> deleteList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
     final req = await beforeHook(url, HttpVerb.delete, body);
-    var response = await http.delete(req.uri, body: body, headers: req.headers);
+    var response = await http.delete(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
 
     return _buildListResult<T>(response, jsonConverter);
@@ -49,7 +49,7 @@ class HttpServiceImpl implements HttpService {
   @override
   Future<T> post<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
     final req = await beforeHook(url, HttpVerb.post, body);
-    var response = await http.post(req.uri, body: body, headers: req.headers);
+    var response = await http.post(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
 
     return _buildResult<T>(response, jsonConverter);
@@ -58,7 +58,7 @@ class HttpServiceImpl implements HttpService {
   @override
   Future<List<T>> postList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
     final req = await beforeHook(url, HttpVerb.post, body);
-    var response = await http.post(req.uri, body: body, headers: req.headers);
+    var response = await http.post(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
    
     return _buildListResult<T>(response, jsonConverter);
@@ -67,7 +67,7 @@ class HttpServiceImpl implements HttpService {
   @override
   Future<T> put<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
     final req = await beforeHook(url, HttpVerb.put, body);
-    var response = await http.put(req.uri, body: body, headers: req.headers);
+    var response = await http.put(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
    
     return _buildResult<T>(response, jsonConverter);
@@ -76,7 +76,7 @@ class HttpServiceImpl implements HttpService {
   @override
   Future<List<T>> putList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
     final req = await beforeHook(url, HttpVerb.put, body);
-    var response = await http.put(req.uri, body: body, headers: req.headers);
+    var response = await http.put(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
    
     return _buildListResult<T>(response, jsonConverter);
