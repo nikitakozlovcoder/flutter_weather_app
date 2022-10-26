@@ -11,8 +11,8 @@ import 'package:myflutterapp/services/http/app_http_request.dart';
 class HttpServiceImpl implements HttpService {
 
   @override
-  Future<T> get<T>(String url, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.get, null);
+  Future<T> get<T>(String url, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.get, null, headers);
     var response = await http.get(req.uri, headers: req.headers);
     response = await afterHook(response);
 
@@ -20,8 +20,8 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<List<T>> getList<T>(String url, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.get, null);
+  Future<List<T>> getList<T>(String url, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.get, null, headers);
     var response = await http.get(req.uri, headers: req.headers);
     response = await afterHook(response);
 
@@ -29,8 +29,8 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<T> delete<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.delete, body);
+  Future<T> delete<T>(String url, Object? body, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.delete, body, headers);
     var response = await http.delete(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
 
@@ -38,8 +38,8 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<List<T>> deleteList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.delete, body);
+  Future<List<T>> deleteList<T>(String url, Object? body, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.delete, body, headers);
     var response = await http.delete(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
 
@@ -47,8 +47,8 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<T> post<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.post, body);
+  Future<T> post<T>(String url, Object? body, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.post, body, headers);
     var response = await http.post(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
 
@@ -56,8 +56,8 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<List<T>> postList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.post, body);
+  Future<List<T>> postList<T>(String url, Object? body, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.post, body, headers);
     var response = await http.post(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
    
@@ -65,8 +65,8 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<T> put<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.put, body);
+  Future<T> put<T>(String url, Object? body, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.put, body, headers);
     var response = await http.put(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
    
@@ -74,15 +74,15 @@ class HttpServiceImpl implements HttpService {
   }
   
   @override
-  Future<List<T>> putList<T>(String url, Object? body, JsonConverter<T> jsonConverter) async {
-    final req = await beforeHook(url, HttpVerb.put, body);
+  Future<List<T>> putList<T>(String url, Object? body, JsonConverter<T> jsonConverter, [Map<String, String>? headers]) async {
+    final req = await beforeHook(url, HttpVerb.put, body, headers);
     var response = await http.put(req.uri, body: req.body, headers: req.headers);
     response = await afterHook(response);
    
     return _buildListResult<T>(response, jsonConverter);
   }
 
-  FutureOr<AppHttpRequest> beforeHook(String url, HttpVerb verb, Object? body) async {
+  FutureOr<AppHttpRequest> beforeHook(String url, HttpVerb verb, Object? body, Map<String, String>? headers) async {
     return AppHttpRequest(uri: Uri.parse(url));
   }
 

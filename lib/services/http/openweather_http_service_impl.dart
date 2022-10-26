@@ -14,8 +14,8 @@ class OpenWeatherHttpServiceImpl extends HttpServiceImpl {
   OpenWeatherHttpServiceImpl(this._env);
 
   @override
-  FutureOr<AppHttpRequest> beforeHook(String url, HttpVerb verb,  Object? body) async {
-    final req = await super.beforeHook(url, verb, body);
+  FutureOr<AppHttpRequest> beforeHook(String url, HttpVerb verb,  Object? body, Map<String, String>? headers) async {
+    final req = await super.beforeHook(url, verb, body, headers);
     final uri = req.uri.replace(queryParameters: {...req.uri.queryParameters}
       ..putIfAbsent('appid', () => _env.openweathermapkey));
       
