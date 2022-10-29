@@ -291,6 +291,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.4"
+  injectable_http_service:
+    dependency: "direct main"
+    description:
+      name: injectable_http_service
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.2"
   io:
     dependency: transitive
     description:
