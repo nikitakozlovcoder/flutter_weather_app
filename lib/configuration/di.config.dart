@@ -64,7 +64,4 @@ _i1.GetIt $initGetIt(
   return get;
 }
 
-class _$RegisterModule extends _i16.RegisterModule {
-  @override
-  _i6.JsonHttpServiceImpl get httpService => _i6.JsonHttpServiceImpl();
-}
+class _$RegisterModule extends _i16.RegisterModule {}
